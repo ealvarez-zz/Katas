@@ -1,18 +1,13 @@
-
-
-
 class fizz_buzz:
-        
         
     def get(self, number):
         
-        if (not (number % 3) and not (number % 5)):
-            return 'fizzbuzz'
+        response = ""
         
         if (not (number % 3)):
-            return "fizz"
+            response = "fizz"
         
         if (not (number % 5)):
-            return "buzz"
+            response += "buzz"
         
-        return number
+        return response if response else number

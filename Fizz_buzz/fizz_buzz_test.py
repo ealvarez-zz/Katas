@@ -2,8 +2,6 @@ import unittest
 from fizz_buzz import fizz_buzz
 import random
 
-
-
 class test(unittest.TestCase):
     def test_get_three(self):
         
