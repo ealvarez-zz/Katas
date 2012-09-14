@@ -43,7 +43,7 @@ class GameOfLifeTest(unittest.TestCase):
         
         self.assertEqual(game.tick(), set())
 
-    @unittest.SkipTest
+    
     def test_tick_with_one_death(self):
         
         seed = set([(0,0)])
@@ -68,5 +68,7 @@ class GameOfLifeTest(unittest.TestCase):
         self.assertEqual(game.live_neighbours_count((0, 1)), 1)
         
 
+if __name__ == '__main__':
+    unittest.main()
     
 

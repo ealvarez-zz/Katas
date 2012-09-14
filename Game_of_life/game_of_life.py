@@ -18,8 +18,9 @@ class GameOfLife(object):
             if self.live_neighbours_count(cell) in (2, 3):
                 survivors.add(cell)
         
-        
-        return set()
+        self.alive_cells = survivors
+        return self.alive_cells
+    
     def live_neighbours_count(self, cell):
         count = 0
         for neighbour in self.neighbours(cell):
