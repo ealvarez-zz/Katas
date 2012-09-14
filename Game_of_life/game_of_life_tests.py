@@ -53,6 +53,15 @@ class GameOfLifeTest(unittest.TestCase):
         
         self.assertEqual(game.alive_cells, set())
     
+    def test_tick_with_all_survivors(self):
+        
+        seed = set([(1, 0), (2, 0), (1, 1), (2, 1)])
+        game = GameOfLife(seed)
+        
+        game.tick()
+        
+        self.assertEqual(game.alive_cells, seed)
+    
     def test_live_neighbours_count(self):
         
         seed = set([(0, 0)])
