@@ -10,8 +10,7 @@ def game_of_life_generator(seed):
 class GameOfLife(object):
     def __init__(self, seed):
         self.alive_cells = seed
-        
-        
+
     def tick(self):
         self.alive_cells = set.union(self.births(), self.survivors())
         return self.alive_cells
@@ -22,12 +21,17 @@ class GameOfLife(object):
                     if len(self.live_neighbours(cell)) in (2, 3)])
     
     def births(self):
-        births = set()
-        for cell in self.alive_cells:
-            births = set.union(births, set([neighbour 
-                                           for neighbour in self.dead_neighbours(cell)
-                                           if len(self.live_neighbours(neighbour)) == 3]))
-        return births
+        births_around_cells = [self.births_around_cell(cell)
+                               for cell in self.alive_cells]
+        if births_around_cells:
+            return set.union(*births_around_cells)
+        
+        return set()
+    
+    def births_around_cell(self, cell):
+        return set([neighbour 
+                    for neighbour in self.dead_neighbours(cell)
+                    if len(self.live_neighbours(neighbour)) == 3])
     
     def dead_neighbours(self, cell):
         return neighbours(cell) - self.live_neighbours(cell)
