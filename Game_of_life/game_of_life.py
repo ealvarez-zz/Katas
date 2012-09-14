@@ -13,12 +13,15 @@ class GameOfLife(object):
         
         
     def tick(self):
-        survivors = set()
+        next_generation = set()
         for cell in self.alive_cells:
             if self.live_neighbours_count(cell) in (2, 3):
-                survivors.add(cell)
-        
-        self.alive_cells = survivors
+                next_generation.add(cell)
+        for cell in self.alive_cells:
+            for neighbour in self.dead_neighbours(cell):
+                if self.live_neighbours_count(neighbour) == 3:
+                    next_generation.add(neighbour)
+        self.alive_cells = next_generation
         return self.alive_cells
     
     def live_neighbours_count(self, cell):
@@ -27,6 +30,16 @@ class GameOfLife(object):
             if neighbour in self.alive_cells:
                 count +=1
         return count
+    
+    def dead_neighbours(self, cell):
+        return neighbours(cell) - self.live_neighbours(cell)
+    
+    def live_neighbours(self, cell):
+        living_neighbours = set()
+        for neighbour in neighbours(cell):
+            if neighbour in self.alive_cells:
+                living_neighbours.add(neighbour)
+        return living_neighbours
 
 
 def neighbours(cell):
