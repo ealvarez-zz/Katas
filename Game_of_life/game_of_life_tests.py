@@ -109,6 +109,7 @@ class NeighboursTest(unittest.TestCase):
         result = neighbours((1, 1))
         self.assertEqual(cells_expected, result)
 
+
 if __name__ == '__main__':
     unittest.main()
     

@@ -6,7 +6,6 @@ def game_of_life_generator(seed):
         yield game.tick()
     
 
-
 class GameOfLife(object):
     def __init__(self, seed):
         self.alive_cells = seed
