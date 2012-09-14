@@ -25,11 +25,7 @@ class GameOfLife(object):
         return self.alive_cells
     
     def live_neighbours_count(self, cell):
-        count = 0
-        for neighbour in neighbours(cell):
-            if neighbour in self.alive_cells:
-                count +=1
-        return count
+        return len(self.live_neighbours(cell))
     
     def dead_neighbours(self, cell):
         return neighbours(cell) - self.live_neighbours(cell)
