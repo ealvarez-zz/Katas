@@ -1,5 +1,5 @@
 import unittest
-from game_of_life import game_of_life_generator, GameOfLife
+from game_of_life import game_of_life_generator, GameOfLife, neighbours
 
 @unittest.SkipTest
 class GeneratorTest(unittest.TestCase):
@@ -66,7 +66,22 @@ class GameOfLifeTest(unittest.TestCase):
         
         self.assertEqual(game.live_neighbours_count((0, 0)), 1)
         self.assertEqual(game.live_neighbours_count((0, 1)), 1)
+
+
+class NeighboursTest(unittest.TestCase):
+    def test_neighbours_at_origin(self):
+        cells_expected = set([(-1, -1), (0, -1), (1, -1),
+                              (-1,  0),          (1,  0),
+                              (-1,  1), (0,  1), (1,  1)])
+        result = neighbours((0, 0))
+        self.assertEqual(cells_expected, result)
         
+    def test_neighbours(self):
+        cells_expected = set([(0, 0), (1, 0), (2, 0),
+                              (0, 1),         (2,  1),
+                              (0, 2), (1, 2), (2,  2)])
+        result = neighbours((1, 1))
+        self.assertEqual(cells_expected, result)
 
 if __name__ == '__main__':
     unittest.main()
