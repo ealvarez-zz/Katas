@@ -45,7 +45,6 @@ class GameOfLifeTest(unittest.TestCase):
 
     
     def test_tick_with_one_death(self):
-        
         seed = set([(0,0)])
         game = GameOfLife(seed)
         
