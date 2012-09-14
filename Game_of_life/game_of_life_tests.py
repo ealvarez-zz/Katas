@@ -1,6 +1,7 @@
 import unittest
 from game_of_life import game_of_life_generator, GameOfLife
 
+@unittest.SkipTest
 class GeneratorTest(unittest.TestCase):
     
     def test_generator(self):
@@ -42,7 +43,30 @@ class GameOfLifeTest(unittest.TestCase):
         
         self.assertEqual(game.tick(), set())
 
+    @unittest.SkipTest
+    def test_tick_with_one_death(self):
+        
+        seed = set([(0,0)])
+        game = GameOfLife(seed)
+        
+        game.tick()
+        
+        self.assertEqual(game.alive_cells, set())
+    
+    def test_live_neighbours_count(self):
+        
+        seed = set([(0, 0)])
+        game = GameOfLife(seed)
+        
+        self.assertEqual(game.live_neighbours_count((0, 0)), 0)
+    
+    def test_live_neighbours_count_one_neighbours(self):
+        seed = set([(0, 0), (0, 1)])
+        game = GameOfLife(seed)
+        
+        self.assertEqual(game.live_neighbours_count((0, 0)), 1)
+        self.assertEqual(game.live_neighbours_count((0, 1)), 1)
+        
 
-
-
+    
 
