@@ -33,11 +33,9 @@ class GameOfLife(object):
         return neighbours(cell) - self.live_neighbours(cell)
     
     def live_neighbours(self, cell):
-        living_neighbours = set()
-        for neighbour in neighbours(cell):
-            if neighbour in self.alive_cells:
-                living_neighbours.add(neighbour)
-        return living_neighbours
+        return set([neighbour
+                    for neighbour in neighbours(cell)
+                    if neighbour in self.alive_cells])
 
 
 def neighbours(cell):
