@@ -14,16 +14,13 @@ class GameOfLife(object):
         
     def tick(self):
         next_generation = set()
-        survivors = [cell for cell in self.alive_cells if self.live_neighbours_count(cell) in (2, 3)]
+        survivors = [cell for cell in self.alive_cells if len(self.live_neighbours(cell)) in (2, 3)]
         for cell in self.alive_cells:
             for neighbour in self.dead_neighbours(cell):
-                if self.live_neighbours_count(neighbour) == 3:
+                if len(self.live_neighbours(neighbour)) == 3:
                     next_generation.add(neighbour)
         self.alive_cells = set.union(next_generation, set(survivors))
         return self.alive_cells
-    
-    def live_neighbours_count(self, cell):
-        return len(self.live_neighbours(cell))
     
     def dead_neighbours(self, cell):
         return neighbours(cell) - self.live_neighbours(cell)
