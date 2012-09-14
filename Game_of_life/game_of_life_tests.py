@@ -1,7 +1,7 @@
 import unittest
 from game_of_life import game_of_life_generator, GameOfLife, neighbours
 
-@unittest.SkipTest
+
 class GeneratorTest(unittest.TestCase):
     
     def test_generator(self):
